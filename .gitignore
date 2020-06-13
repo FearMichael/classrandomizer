@@ -1,3 +1,7 @@
+# Keep names private
+Groups*.md
+classlist.txt
+class.json
 # Logs
 logs
 *.log
