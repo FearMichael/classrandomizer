@@ -4,9 +4,16 @@ const fs = require("fs");
 const moment = require("moment");
 const weekOf = moment().add(7, "days").startOf("week").add(1, "days").format("MM-DD-YYYY");
 
+const groupSize = 5;
+
+// Level out groups
 const evenGroups = (arr) => {
-    const secondLastGroup = arr[arr.length - 2];
-    arr[arr.length - 1].push(secondLastGroup.pop());
+    const lastItem = arr.pop();
+    const membersToAdd = groupSize - lastItem.length;
+    for (let i = 1; i <= membersToAdd; i++) {
+        lastItem.push(arr[i].pop());
+    }
+    arr.push(lastItem);
     return arr;
 }
 
@@ -19,11 +26,7 @@ const generateText = (arr) => {
 }
 
 const nameList = classList.map((elem, i) => `${elem.student.firstName} ${elem.student.lastName}`);
-const groups = evenGroups(_.chunk(_.shuffle(nameList), 5));
-
-
+const groups = evenGroups(_.chunk(_.shuffle(nameList), groupSize));
 
 const text = generateText(groups);
-console.log(text)
-console.log(groups);
 fs.writeFileSync(`Groups${weekOf}.md`, text);
