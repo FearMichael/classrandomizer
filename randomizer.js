@@ -10,12 +10,11 @@ const groupSize = 5;
 
 // Level out groups
 const evenGroups = (nestedArr) => {
-
+    console.log(nestedArr)
     const lastItem = nestedArr.pop();
-
     const membersToAdd = groupSize - lastItem.length;
-
-    for (let i = 1; i <= membersToAdd; i++) {
+    console.log(lastItem)
+    for (let i = 0; i < membersToAdd; i++) {
         lastItem.push(nestedArr[i].pop());
     }
 
