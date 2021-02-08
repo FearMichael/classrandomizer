@@ -1,14 +1,13 @@
 # classrandomizer
+
 Create groups for class and output readme file with the groups list
 
-Run npm i
+Run npm i & npm start
 
-Requires local classlist.json with an array of objects:
+Requires local class.json with an array of objects:
 [
     {
-        student: {
-            firstName: string,
-            lastName: string,
-        }
+        "firstName": "string",
+        "lastName": "string"
     }
 ]
