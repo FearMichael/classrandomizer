@@ -4,7 +4,8 @@
   "description": "",
   "main": "randomizer.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node randomizer.js"
   },
   "author": "",
   "license": "ISC",
