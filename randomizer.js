@@ -1,16 +1,9 @@
 const classList = require("./class.json");
 const _ = require("lodash");
 const fs = require("fs");
-const util = require("util");
 const moment = require("moment");
-const weekOf = moment().add(7, "days").startOf("week").add(2, "days").format("MM-DD-YYYY");
+const weekOf = moment().add(21, "days").startOf("week").add(2, "days").format("MM-DD-YYYY");
 const groupSize = 5;
-
-const writeFileAsync = util.promisify(fs.appendFile);
-
-function writeToFile(fileName, data) {
-    return writeFileAsync(fileName, data);
-}
 
 // Level out groups
 const evenGroups = (nestedArr) => {
@@ -48,5 +41,5 @@ const groups = evenGroups(_.chunk(_.shuffle(nameList), groupSize));
 const text = generateText(groups);
 
 
-writeToFile(`./groups/Groups_${weekOf}.md`, text);
+fs.writeFileSync(`./groups/Groups_${weekOf}.md`, text);
 console.log("File written successfully!");
