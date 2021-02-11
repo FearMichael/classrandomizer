@@ -1,7 +1,7 @@
-const classList = require("./class.json");
-const _ = require("lodash");
-const fs = require("fs");
-const moment = require("moment");
+import classList from "./class.js";
+import _ from "lodash";
+import fs from "fs";
+import moment from "moment";
 const weekOf = moment().add(7, "days").startOf("week").add(1, "days").format("MM-DD-YYYY");
 const groupSize = 5;
 
@@ -10,10 +10,8 @@ const groupSize = 5;
 
 // Level out groups
 const evenGroups = (nestedArr) => {
-    console.log(nestedArr)
     const lastItem = nestedArr.pop();
     const membersToAdd = groupSize - lastItem.length;
-    console.log(lastItem)
     for (let i = 0; i < membersToAdd; i++) {
         lastItem.push(nestedArr[i].pop());
     }
@@ -25,15 +23,10 @@ const evenGroups = (nestedArr) => {
 
 
 const generateText = (arr) => {
-
-    let data = `### Groups for ${weekOf}\n`;
-
-    arr.forEach((elem, i) => {
-
-        data += `\n\n#### Group ${i + 1}\n${elem.map((name, i) => `${i + 1}. ${name}`).join("\n")}`
-
-    });
-    return data;
+    const data = `### Groups for ${weekOf}\n`;
+    return arr.reduce((prev, curr, i) => {
+        return prev + `\n\n#### Group ${i + 1}\n${curr.map((name, i) => `${i + 1}. ${name}`).join("\n")}`
+    }, data)
 }
 
 

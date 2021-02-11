@@ -1,14 +1,20 @@
-# classrandomizer
-Create groups for class and output readme file with the groups list
+# The Class Randomizer
+This is a basic script I wrote to aid in creating randomized groups for Coding Bootcamps that I am a Teaching Assistant for. 
+This will create groups starting at 5 (or whatever size you declare in the randomizer.js file), and then it will aim to balance out the groups so theres only a difference of 1 between group sizes.
 
-Run npm i
+Run `npm i`
 
-Requires local classlist.json with an array of objects:
-[
+Requires local classlist.js with an array of objects:
+```
+const classList = [
     {
         student: {
             firstName: string,
             lastName: string,
         }
     }
-]
+];
+export default classList;
+```
+
+Then run `node randomizer`

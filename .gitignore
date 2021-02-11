@@ -2,6 +2,7 @@
 Groups*.md
 classlist.txt
 class.json
+class.js
 # Logs
 logs
 *.log
