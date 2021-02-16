@@ -5,9 +5,6 @@ import moment from "moment";
 const weekOf = moment().add(7, "days").startOf("week").add(1, "days").format("MM-DD-YYYY");
 const groupSize = 5;
 
-
-// Helper function file
-
 // Level out groups
 const evenGroups = (nestedArr) => {
     const lastItem = nestedArr.pop();
@@ -34,11 +31,10 @@ const generateText = (arr) => {
 
 const nameList = classList.map((elem, i) => `${elem.student.firstName} ${elem.student.lastName}`);
 
-
 const groups = evenGroups(_.chunk(_.shuffle(nameList), groupSize));
-
 
 const text = generateText(groups);
 
 
-fs.writeFileSync(`Groups${weekOf}.md`, text);
+fs.writeFileSync(`./groups/Groups_${weekOf}.md`, text);
+console.log(`Groups_${weekOf}.md has been written successfully!`);
