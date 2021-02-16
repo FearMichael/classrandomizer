@@ -37,4 +37,4 @@ const text = generateText(groups);
 
 
 fs.writeFileSync(`./groups/Groups_${weekOf}.md`, text);
-console.log("File written successfully!");
+console.log(`Groups_${weekOf}.md has been written successfully!`);
