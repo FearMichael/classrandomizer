@@ -4,7 +4,7 @@ This will create groups starting at 5 (or whatever size you declare in the rando
 
 Run `npm i`
 
-Requires local class.js with an array of objects:
+Requires local class.js file with an array of objects:
 ```
 const classList = [
     {
