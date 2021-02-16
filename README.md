@@ -7,7 +7,7 @@ Run `npm i` + `npm start`
 Requires local class.js file with an array of objects:
 ```
 const classList = [
-    {
+    student: {
         "firstName": "string",
         "lastName": "string"
     }
