@@ -29,7 +29,7 @@ const generateText = (arr) => {
 
 /// Executing file
 
-const nameList = classList.map((elem, i) => `${elem.firstName} ${elem.lastName}`);
+const nameList = classList.map((elem, i) => `${elem.student.firstName} ${elem.student.lastName}`);
 
 const groups = evenGroups(_.chunk(_.shuffle(nameList), groupSize));
 
