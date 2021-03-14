@@ -3,6 +3,8 @@ Groups*.md
 classlist.txt
 class.json
 class.js
+groups
+.DS_Store
 # Logs
 logs
 *.log
