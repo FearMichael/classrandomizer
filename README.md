@@ -7,13 +7,13 @@ This will create groups of whatever size you declare, and then it will aim to ba
 ## Requirements
 Requires local class.json file with an array of objects: 
 ```
-const classList = [
-    student: {
-        "firstName": "string",
-        "lastName": "string"
-    }
+[
+  student: {
+      "firstName": "string",
+      "lastName": "string"
+  }
 ];
-export default classList;
+
 ```
 
 ---
