@@ -1,12 +1,10 @@
-import classList from "./class.js";
 import _ from "lodash";
-import fs from "fs";
+import fs from "fs/promises";
 import moment from "moment";
 const weekOf = moment().add(7, "days").startOf("week").add(1, "days").format("MM-DD-YYYY");
-const groupSize = 5;
 
 // Level out groups
-const evenGroups = (nestedArr) => {
+const evenGroups = (nestedArr, groupSize, driver) => {
     const lastItem = nestedArr.pop();
     const membersToAdd = groupSize - lastItem.length;
     for (let i = 0; i < membersToAdd; i++) {
@@ -14,7 +12,15 @@ const evenGroups = (nestedArr) => {
     }
 
     nestedArr.push(lastItem);
-
+    if (driver) {
+        nestedArr = nestedArr.map((group) => {
+            const random = Math.floor(Math.random() * group.length);
+            let driver = group[random];
+            driver += ' (Driver)';
+            group[random] = driver;
+            return group;
+        })
+    }
     return nestedArr;
 }
 
@@ -29,12 +35,15 @@ const generateText = (arr) => {
 
 /// Executing file
 
-const nameList = classList.map((elem, i) => `${elem.student.firstName} ${elem.student.lastName}`);
+export const create = async (filepath = './class.json', groupSize = 5, driver = true, outputPath = `./groups/Groups_${weekOf}.md`) => {
+    const list = await fs.readFile(filepath, 'utf8');
+    
+    const nameList = JSON.parse(list)?.map((elem, i) => `${elem.student.firstName} ${elem.student.lastName}`);
 
-const groups = evenGroups(_.chunk(_.shuffle(nameList), groupSize));
+    const groups = evenGroups(_.chunk(_.shuffle(nameList), groupSize), groupSize, driver);
 
-const text = generateText(groups);
+    const text = generateText(groups);
 
-
-fs.writeFileSync(`./groups/Groups_${weekOf}.md`, text);
-console.log(`Groups_${weekOf}.md has been written successfully!`);
+    await fs.writeFile(outputPath, text);
+    console.log(`Groups_${weekOf}.md has been written successfully!`);
+}
